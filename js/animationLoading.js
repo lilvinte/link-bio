@@ -16,9 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    let referrer = document.referrer || "Acesso Direto";
+    let referrer = document.referrer;
+    if (!referrer || referrer === "") {
+        referrer = "Origem não detectada"; // Se estiver em branco, define um valor padrão
+    }
+
     let userAgent = navigator.userAgent;
-    
+
     // Detecta acessos via apps móveis
     if (userAgent.includes("FBAV")) {
         referrer = "Facebook App";
@@ -47,9 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Adiciona novo registro com dispositivo
     visits.push({ source: referrer, timestamp: timestamp, device: device });
-    
+
     // Salva no localStorage
     localStorage.setItem("user_visits", JSON.stringify(visits));
 
-    console.log("Visita registrada:", visits);
+    // Logs para depuração no GitHub Pages
+    console.log("Visita registrada:", { referrer, timestamp, device });
 });
