@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard </title>
+    <title>Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,6 +32,7 @@
             <tr>
                 <th>Data e Hora</th>
                 <th>Origem</th>
+                <th>Dispositivo</th>
             </tr>
         </thead>
         <tbody id="visitsTable"></tbody>
@@ -47,7 +48,7 @@
             // Adiciona cada entrada na tabela
             visits.forEach(visit => {
                 let row = document.createElement("tr");
-                row.innerHTML = `<td>${visit.timestamp}</td><td>${visit.source}</td>`;
+                row.innerHTML = `<td>${visit.timestamp}</td><td>${visit.source}</td><td>${visit.device}</td>`;
                 tableBody.appendChild(row);
             });
         });
