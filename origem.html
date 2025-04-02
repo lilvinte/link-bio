@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #000000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard de Origem dos Usuários</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Data e Hora</th>
+                <th>Origem</th>
+            </tr>
+        </thead>
+        <tbody id="visitsTable"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Recupera os dados do localStorage
+            let visits = JSON.parse(localStorage.getItem("user_visits")) || [];
+
+            let tableBody = document.getElementById("visitsTable");
+
+            // Adiciona cada entrada na tabela
+            visits.forEach(visit => {
+                let row = document.createElement("tr");
+                row.innerHTML = `<td>${visit.timestamp}</td><td>${visit.source}</td>`;
+                tableBody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
